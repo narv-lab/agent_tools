@@ -1,0 +1,12 @@
+[project]
+name = "core"
+version = "0.1.0"
+requires-python = ">=3.10"
+dependencies = []
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project.entry-points."mcp.tools"]
+core = "core.prompt_plugin:register_tools"

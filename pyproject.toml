@@ -1,0 +1,27 @@
+[project]
+name = "agent-tools-workspace"
+version = "0.1.0"
+requires-python = ">=3.10"
+description = "Agent Tool System workspace"
+dependencies = [
+    "tree-sitter",
+    "tree-sitter-python",
+    "tree-sitter-javascript",
+    "tree-sitter-typescript",
+    "tree-sitter-go",
+    "tree-sitter-json",
+    "tree-sitter-yaml",
+    "tree-sitter-markdown",
+    "tree-sitter-html",
+    "tree-sitter-xml",
+    "tree-sitter-css",
+    "mcp>=2.0.0",
+]
+
+[tool.uv.workspace]
+members = ["packages/*"]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q"
+testpaths = ["tests"]

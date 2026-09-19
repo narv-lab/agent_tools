@@ -1,0 +1,12 @@
+[project]
+name = "state_management"
+version = "0.1.0"
+requires-python = ">=3.10"
+dependencies = []
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project.entry-points."mcp.tools"]
+state_management = "state_management.plugin:register_tools"

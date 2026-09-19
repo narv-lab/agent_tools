@@ -1,0 +1,22 @@
+# STRICT USAGE OF AGENT-TOOLS (Tool Constraint Rule)
+
+## Core Directive
+The primary purpose of this file is to **restrict the use of native agent tools** and **force the use of the `agent-tools` MCP server** for all project operations. 
+
+## Tool Restriction Rules
+
+### 1. Codebase Exploration
+- **FORBIDDEN**: Native tools like `view_file`, `list_dir`, `grep_search`, and using MCP tools like `execute_bash` or `spawn_process` (e.g., `cat`, `grep`, `find`) to bypass these restrictions.
+- **REQUIRED**: Use MCP tools like `get_repo_map`, `get_file_overview`, `read_symbol_lines`, `search_semantic`, `find_references`, `grep_workspace`. (This applies to all supported programming languages and structured documents including JSON, YAML, Markdown, HTML, XML, CSS, SCSS).
+- **EXCEPTION (Schemas/Logs/Unsupported Formats)**: You may use native tools (`view_file`, `list_dir`, `grep_search`) ONLY to read MCP tool JSON schemas (in `~/.gemini/antigravity-cli/mcp/agent-tools/`), truncated tool output logs (`output.txt`), or file formats that are truly NOT supported by the `agent-tools` MCP server's AST parser.
+
+### 2. Code Editing
+- **FORBIDDEN**: Native tools like `replace_file_content`, `multi_replace_file_content`, `write_to_file` (for source code), and using MCP tools like `execute_bash` or `spawn_process` (e.g., `sed`, `awk`, `echo`) to modify files.
+- **REQUIRED**: Use MCP tools `dry_run_patches` and `apply_and_validate_patches` for robust, AST/symbol-based editing.
+- **EXCEPTION (Unsupported Formats)**: You may use native editing tools (`replace_file_content`, `multi_replace_file_content`, `write_to_file`) for files that are NOT currently supported by the `agent-tools` MCP server's AST parser.
+- **FALLBACK RULE**: If the Language Server Protocol (LSP) is completely broken and MCP patching tools fail repeatedly, you may temporarily fall back to native text replacement tools to fix the syntax error, but you must return to MCP tools immediately after.
+
+### 3. Command Execution
+- **FORBIDDEN**: Native tool `run_command` (for project builds, tests, or scripts).
+- **REQUIRED**: Use MCP tools `execute_bash`, `spawn_process`, and `run_tests`.
+- **NO PYTHON WORKAROUNDS**: Do NOT write Python scripts (e.g., `ast.parse` or regex parsers) via `run_command` to bypass the restrictions above. Use the provided MCP tools.

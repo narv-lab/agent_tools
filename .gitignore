@@ -1,0 +1,34 @@
+# Virtual Environments
+.venv/
+venv/
+env/
+
+# Python Byte-compiled files
+__pycache__/
+*.py[cod]
+
+# Distribution / Packaging
+build/
+dist/
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Type Checking & Linting
+.mypy_cache/
+.ruff_cache/
+
+# Local Environment Variables
+.env
+.env.*
+
+# OS & Editor
+.DS_Store
+.vscode/
+.idea/
+
+# Agent Tools / Antigravity artifacts
+.agents/
+scratch/
